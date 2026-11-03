@@ -2,7 +2,7 @@
 branch: main
 
 # Content and dependency updates (Renovate uses `build`) are published and therefore trigger a patch release
-patch-types: [fix, build, docs]
+patch-types: [fix, build, refactor, style, perf]
 
 release-emoji: true
 
