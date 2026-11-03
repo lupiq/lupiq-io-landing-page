@@ -1,0 +1,95 @@
+:root {
+  --night: #3a2e5e;
+  --teal: #2bb3a3;
+  --grey: #5e5e63;
+  --beige: #f5f2ed;
+  --bg: #fff;
+  --surface: var(--beige);
+  --text: #111;
+  --muted: var(--grey);
+  --accent: var(--night);
+  --link: var(--night);
+  --btn-bg: var(--teal);
+  --btn-text: #000;
+  --max: 68rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d0a16;
+    --surface: #1a1429;
+    --text: #fff;
+    --muted: #b9b6c4;
+    --accent: var(--teal);
+    --link: var(--teal);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 1.0625rem/1.65 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+a { color: var(--link); }
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+section { padding: 5rem 0; scroll-margin-top: 4rem; }
+@media (max-width: 40rem) { section { padding: 3rem 0; } }
+section.alt { background: var(--surface); }
+
+h1, h2, h3 { line-height: 1.1; margin: 0 0 1rem; }
+h1 { overflow-wrap: anywhere; font-size: clamp(2rem, 7vw, 4.75rem); text-transform: uppercase; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+h3 { font-size: 1.25rem; }
+
+.eyebrow {
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin: 0 0 0.75rem;
+}
+
+.lead { font-size: clamp(1.05rem, 2.5vw, 1.25rem); max-width: 42rem; color: var(--muted); }
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-weight: 700;
+  text-decoration: none;
+}
+.btn:hover { filter: brightness(1.1); }
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+}
+
+.card {
+  background: var(--bg);
+  border-radius: 1rem;
+  padding: 1.75rem;
+  border-top: 4px solid var(--teal);
+}
+section:not(.alt) .card { background: var(--surface); }
+.card p { margin: 0; color: var(--muted); }
+.card .card-cta { margin: 1em 0 0; }
+.card .accent { color: var(--text); font-weight: 600; margin-bottom: 0.5rem; }
+
+:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }

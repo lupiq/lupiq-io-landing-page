@@ -1,0 +1,218 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Logo from '../components/Logo.astro';
+
+const byOrder = <T extends { data: { order: number } }>(a: T, b: T) => a.data.order - b.data.order;
+const pillars = (await getCollection('pillars')).sort(byOrder);
+const services = (await getCollection('services')).sort(byOrder);
+const work = (await getCollection('work')).sort(byOrder);
+
+const pillarItems = await Promise.all(
+  pillars.map(async (entry) => ({ entry, Content: (await render(entry)).Content })),
+);
+const serviceItems = await Promise.all(
+  services.map(async (entry) => ({ entry, Content: (await render(entry)).Content })),
+);
+const workItems = await Promise.all(
+  work.map(async (entry) => ({ entry, Content: (await render(entry)).Content })),
+);
+---
+
+<Base
+  title="lupiq – Software manufacture for full-stack web development & agile coaching"
+  description="lupiq is a small software manufacture from Switzerland. We build great software and help teams become better – full-stack web development and agile coaching."
+>
+  <header class="top">
+    <div class="wrap bar">
+      <a href="/" aria-label="lupiq home"><Logo height={44} /></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+        <span class="sr-only">Menu</span>
+        <span class="bars" aria-hidden="true"></span>
+      </button>
+      <nav id="main-nav" aria-label="Main">
+        <a href="#what-we-do">What we do</a>
+        <a href="#our-work">Our Work</a>
+        <a href="#contact">Contact</a>
+        <a href="https://lupiq.com">lupiq.com</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Software manufacture · Münsingen, Switzerland</p>
+        <h1>Build great software.<br />Become a better team.</h1>
+        <p class="lead">
+          Projects rarely stall for lack of ideas. They stall on complexity and missing clarity.
+          We're not a classic consultancy — we dive into the code, work in your team and make
+          decisions with consequence.
+        </p>
+        <p><a class="btn" href="#contact">Let's talk</a></p>
+      </div>
+    </section>
+
+    <section id="what-we-do" class="alt">
+      <div class="wrap">
+        <p class="eyebrow">What we do</p>
+        <h2>We don't manage problems. We build solutions.</h2>
+        <p class="lead">
+          Full-stack web development and agile coaching, from a small crew that stays on board until
+          the solution stands — and runs stable.
+        </p>
+        <div class="grid">
+          {pillarItems.map(({ entry, Content }) => (
+            <article class="card">
+              <h3>{entry.data.title}</h3>
+              <Content />
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <p class="eyebrow">Craft, not buzzwords</p>
+        <h2>Our services</h2>
+        <div class="grid">
+          {serviceItems.map(({ entry, Content }) => (
+            <article class="card">
+              <h3>{entry.data.title}</h3>
+              <Content />
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="our-work" class="alt">
+      <div class="wrap">
+        <p class="eyebrow">Our Work</p>
+        <h2>Things we've built (and open-sourced)</h2>
+        <div class="grid">
+          {workItems.map(({ entry, Content }) => (
+            <article class="card">
+              <h3>{entry.data.title}</h3>
+              <p class="accent">{entry.data.tagline}</p>
+              <Content />
+              <p class="card-cta"><a class="btn" href={entry.data.url}>{entry.data.cta} →</a></p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <p class="eyebrow">Contact</p>
+        <h2>Let's talk code, processes or your strategy.</h2>
+        <p class="lead">
+          We know the speed of startups and the structures of large organisations. Bring us your
+          hairiest problem.
+        </p>
+        <p><a class="btn" href="mailto:hello@lupiq.com">hello@lupiq.com</a>
+          &nbsp; <a href="https://lupiq.com">Visit lupiq.com</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>© 2026 <a href="https://lupiq.com">lupiq GmbH</a> · Tägertschistrasse 19 · 3110 Münsingen · Switzerland</p>
+    </div>
+  </footer>
+</Base>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = document.getElementById('main-nav');
+
+  const setOpen = (open: boolean) => {
+    toggle?.setAttribute('aria-expanded', String(open));
+    nav?.classList.toggle('open', open);
+  };
+
+  toggle?.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  nav?.addEventListener('click', (e) => {
+    if (e.target instanceof HTMLAnchorElement) setOpen(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+</script>
+
+<style>
+  .top {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 0.75rem 0;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(8px);
+  }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; position: relative; }
+  nav { display: flex; gap: 1.5rem; }
+  nav a { color: var(--text); text-decoration: none; font-weight: 600; padding: 0.5rem 0; }
+  nav a:hover { color: var(--accent); }
+  .menu-toggle {
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 0;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    place-items: center;
+  }
+  .bars, .bars::before, .bars::after {
+    display: block;
+    width: 1.5rem;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .bars { position: relative; }
+  .bars::before, .bars::after { content: ''; position: absolute; left: 0; }
+  .bars::before { top: -7px; }
+  .bars::after { top: 7px; }
+  .menu-toggle[aria-expanded='true'] .bars { background: transparent; }
+  .menu-toggle[aria-expanded='true'] .bars::before { top: 0; transform: rotate(45deg); }
+  .menu-toggle[aria-expanded='true'] .bars::after { top: 0; transform: rotate(-45deg); }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .hero { padding: 6rem 0 5rem; }
+  footer { background: var(--night); color: #fff; padding: 2rem 0; font-size: 0.9rem; }
+  footer p { margin: 0; }
+  footer a { color: #fff; }
+  :global(.logo) { display: block; width: auto; }
+
+  @media (max-width: 40rem) {
+    .menu-toggle { display: grid; }
+    nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      padding: 0.5rem 1.5rem 1rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--surface);
+    }
+    nav.open { display: flex; }
+    nav a { padding: 0.75rem 0; font-size: 1.125rem; }
+    .hero { padding: 3rem 0 3rem; }
+  }
+</style>
