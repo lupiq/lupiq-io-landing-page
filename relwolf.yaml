@@ -1,4 +1,3 @@
-# yaml-language-server: $schema=https://relwolf.lupiq.io/schema.json
 branch: main
 
 # Content and dependency updates (Renovate uses `build`) are published and therefore trigger a patch release
