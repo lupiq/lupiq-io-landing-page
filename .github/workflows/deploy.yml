@@ -1,11 +1,11 @@
 name: Deploy
 
-# Publishes the Astro site to GitHub Pages (https://lupiq.io) on every push to main.
+# Publishes the Astro site to GitHub Pages (https://lupiq.io) for every stable release (tag created by relwolf).
 # Requires Settings → Pages → Source: GitHub Actions.
 
 on:
   push:
-    branches: [main]
+    tags: ['v*.*.*']
   workflow_dispatch:
 
 permissions:
@@ -19,6 +19,7 @@ concurrency:
 
 jobs:
   build:
+    if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.ref_name, '-') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7.0.1

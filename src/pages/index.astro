@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Logo from '../components/Logo.astro';
+import { version } from '../../package.json';
 
 const byOrder = <T extends { data: { order: number } }>(a: T, b: T) => a.data.order - b.data.order;
 const pillars = (await getCollection('pillars')).sort(byOrder);
@@ -126,7 +127,7 @@ const workItems = await Promise.all(
   <footer>
     <div class="wrap">
       <p>© 2026 <a href="https://lupiq.com" target="_blank" rel="noopener noreferrer">lupiq GmbH</a> · Tägertschistrasse 19 · 3110 Münsingen · Switzerland</p>
-      <p class="legal"><a href="/imprint/">Imprint</a> · <a href="/privacy/">Privacy policy</a></p>
+      <p class="legal"><a href="/imprint/">Imprint</a> · <a href="/privacy/">Privacy policy</a> · v{version}</p>
     </div>
   </footer>
 </Base>
