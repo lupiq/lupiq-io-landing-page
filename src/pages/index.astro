@@ -34,7 +34,7 @@ const workItems = await Promise.all(
         <a href="#what-we-do">What we do</a>
         <a href="#our-work">Our Work</a>
         <a href="#contact">Contact</a>
-        <a href="https://lupiq.com">lupiq.com</a>
+        <a href="https://lupiq.com" target="_blank" rel="noopener noreferrer">lupiq.com</a>
       </nav>
     </div>
   </header>
@@ -43,6 +43,7 @@ const workItems = await Promise.all(
     <section class="hero">
       <div class="wrap">
         <p class="eyebrow">Software manufacture · Münsingen, Switzerland</p>
+      <p class="legal"><a href="/imprint/">Imprint</a> · <a href="/privacy/">Privacy policy</a></p>
         <h1>Build great software.<br />Become a better team.</h1>
         <p class="lead">
           Projects rarely stall for lack of ideas. They stall on complexity and missing clarity.
@@ -97,7 +98,12 @@ const workItems = await Promise.all(
               <h3>{entry.data.title}</h3>
               <p class="accent">{entry.data.tagline}</p>
               <Content />
-              <p class="card-cta"><a class="btn" href={entry.data.url}>{entry.data.cta} →</a></p>
+              <p class="card-cta">
+                <a class="btn" href={entry.data.url} target="_blank" rel="noopener noreferrer">{entry.data.cta} →</a>
+                {entry.data.secondary && (
+                  <a class="link" href={entry.data.secondary.url} target="_blank" rel="noopener noreferrer">{entry.data.secondary.label} →</a>
+                )}
+              </p>
             </article>
           ))}
         </div>
@@ -113,14 +119,14 @@ const workItems = await Promise.all(
           hairiest problem.
         </p>
         <p><a class="btn" href="mailto:hello@lupiq.com">hello@lupiq.com</a>
-          &nbsp; <a href="https://lupiq.com">Visit lupiq.com</a></p>
+          &nbsp; <a href="https://lupiq.com" target="_blank" rel="noopener noreferrer">Visit lupiq.com</a></p>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="wrap">
-      <p>© 2026 <a href="https://lupiq.com">lupiq GmbH</a> · Tägertschistrasse 19 · 3110 Münsingen · Switzerland</p>
+      <p>© 2026 <a href="https://lupiq.com" target="_blank" rel="noopener noreferrer">lupiq GmbH</a> · Tägertschistrasse 19 · 3110 Münsingen · Switzerland</p>
     </div>
   </footer>
 </Base>
@@ -194,6 +200,7 @@ const workItems = await Promise.all(
   .hero { padding: 6rem 0 5rem; }
   footer { background: var(--night); color: #fff; padding: 2rem 0; font-size: 0.9rem; }
   footer p { margin: 0; }
+  footer .legal { margin-top: 0.5rem; }
   footer a { color: #fff; }
   :global(.logo) { display: block; width: auto; }
 

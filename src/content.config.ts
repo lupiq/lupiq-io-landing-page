@@ -9,6 +9,7 @@ const work = defineCollection({
     tagline: z.string(),
     url: z.url(),
     cta: z.string().default('Visit'),
+    secondary: z.object({ label: z.string(), url: z.url() }).optional(),
     order: z.number().default(0),
   }),
 });
@@ -29,4 +30,12 @@ const pillars = defineCollection({
   }),
 });
 
-export const collections = { work, services, pillars };
+const legal = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/legal' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+  }),
+});
+
+export const collections = { work, services, pillars, legal };
