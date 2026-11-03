@@ -18,9 +18,9 @@ Email: [hello@lupiq.com](mailto:hello@lupiq.com)
 - Commercial register: [Handelsregisteramt Kanton Bern](https://be.chregister.ch/cr-portal/auszug/auszug.xhtml?uid=CHE-243.973.857#)
 - UID: CHE-243.973.857
 - VAT number: CHE-243.973.857 MWST
-- Authorised representative:
-    - Nicolas Oeschger
+- Authorised representatives:
     - Jessica Oeschger
+    - Nicolas Oeschger
 
 ## Disclaimer
 
