@@ -1,0 +1,39 @@
+---
+import {APP_VERSION} from '../app-version';
+
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="wrap">
+    <p>
+      © {year}{' '}
+      <a href="https://lupiq.com" target="_blank" rel="noopener noreferrer">
+        lupiq GmbH
+      </a>{' '}
+      · Tägertschistrasse 19 · 3110 Münsingen · Switzerland
+    </p>
+    <p class="legal">
+      <a href="/imprint/">Imprint</a> · <a href="/privacy/">Privacy policy</a> ·
+      v{APP_VERSION}
+    </p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background: var(--night);
+    color: #fff;
+    padding: 2rem 0;
+    font-size: 0.9rem;
+  }
+  footer p {
+    margin: 0;
+  }
+  footer .legal {
+    margin-top: 0.5rem;
+  }
+  footer a {
+    color: #fff;
+  }
+</style>

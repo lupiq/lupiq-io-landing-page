@@ -1,7 +1,8 @@
 ---
 import {getCollection, render} from 'astro:content';
 import Base from '../layouts/Base.astro';
-import Logo from '../components/Logo.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
 export async function getStaticPaths() {
   const pages = await getCollection('legal');
@@ -13,13 +14,7 @@ const {Content} = await render(page);
 ---
 
 <Base title={`${page.data.title} – lupiq`} description={page.data.description}>
-  <header class="top">
-    <div class="wrap">
-      <a href="/" aria-label="lupiq home">
-        <Logo height={44} />
-      </a>
-    </div>
-  </header>
+  <Header />
   <main>
     <article class="wrap prose">
       <h1>{page.data.title}</h1>
@@ -29,16 +24,10 @@ const {Content} = await render(page);
       </p>
     </article>
   </main>
+  <Footer />
 </Base>
 
 <style>
-  .top {
-    padding: 0.75rem 0;
-  }
-  :global(.logo) {
-    display: block;
-    width: auto;
-  }
   .prose {
     max-width: 46rem;
     padding-top: 3rem;

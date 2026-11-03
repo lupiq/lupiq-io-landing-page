@@ -9,3 +9,10 @@ const {height = 48} = Astro.props;
   <source srcset="/lupiq_logo_white.svg" media="(prefers-color-scheme: dark)" />
   <img src="/lupiq_logo_colored.svg" alt="lupiq" height={height} class="logo" />
 </picture>
+
+<style>
+  .logo {
+    display: block;
+    width: auto;
+  }
+</style>
