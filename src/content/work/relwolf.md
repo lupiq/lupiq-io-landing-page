@@ -8,4 +8,5 @@ secondary:
   url: https://github.com/lupiq/relwolf
 order: 1
 ---
+
 An open-source release bot for GitLab and GitHub. It turns Conventional Commits into SemVer versions, changelogs and release merge requests — so release day stays boring.

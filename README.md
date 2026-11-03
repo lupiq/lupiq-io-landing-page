@@ -14,6 +14,7 @@ Requires Node.js (version in `.node-version`) and [pnpm](https://pnpm.io).
 pnpm install
 pnpm dev       # dev server at http://localhost:4321
 pnpm check     # type check
+pnpm format    # format everything with Prettier (also run on staged files by a pre-commit hook)
 pnpm build     # static build into dist/
 pnpm preview   # serve the build
 ```
@@ -22,12 +23,12 @@ pnpm preview   # serve the build
 
 Content lives in `src/content/` as Markdown with frontmatter; `order` controls the display order.
 
-| Folder      | Used for                                                                                |
-| ----------- | --------------------------------------------------------------------------------------- |
-| `pillars/`  | The three pillars in "What we do"                                                       |
-| `services/` | Service cards                                                                           |
-| `work/`     | "Our Work" cards (`title`, `tagline`, `url`, optional `cta` and `secondary` link)       |
-| `legal/`    | Imprint and privacy policy, rendered at `/imprint/` and `/privacy/`                     |
+| Folder      | Used for                                                                          |
+| ----------- | --------------------------------------------------------------------------------- |
+| `pillars/`  | The three pillars in "What we do"                                                 |
+| `services/` | Service cards                                                                     |
+| `work/`     | "Our Work" cards (`title`, `tagline`, `url`, optional `cta` and `secondary` link) |
+| `legal/`    | Imprint and privacy policy, rendered at `/imprint/` and `/privacy/`               |
 
 Hero and contact texts are part of `src/pages/index.astro`. Brand colors are CSS variables in `src/styles/global.css`.
 
@@ -35,7 +36,7 @@ The imprint and privacy policy contain `[TODO: ...]` placeholders that have to b
 
 ## Releases and deployment
 
-- Commits follow [Conventional Commits](https://www.conventionalcommits.org/).
+- Commits follow [Conventional Commits](https://www.conventionalcommits.org/) with a sentence-case subject; this is enforced by a Husky `commit-msg` hook (commitlint).
 - [relwolf](https://relwolf.lupiq.io) opens a release pull request (`.github/workflows/release.yml`, config in `relwolf.yaml` and `cliff.toml`). It bumps the version in `package.json` and `src/app-version.ts` (shown in the footer). The workflow needs the variable `RELWOLF_APP_CLIENT_ID` and the secret `RELWOLF_APP_PRIVATE_KEY` of a GitHub App.
 - `.github/workflows/deploy.yml` builds every push. Only stable release tags (`v*.*.*`) are published to GitHub Pages; the `github-pages` environment must allow that tag pattern.
 - Pages source: Settings → Pages → _GitHub Actions_, custom domain `lupiq.io`.

@@ -2,6 +2,7 @@
 title: Imprint
 description: Legal information about lupiq GmbH.
 ---
+
 ## Provider
 
 lupiq GmbH  
@@ -19,8 +20,8 @@ Email: [hello@lupiq.com](mailto:hello@lupiq.com)
 - UID: CHE-243.973.857
 - VAT number: CHE-243.973.857 MWST
 - Authorised representatives:
-    - Jessica Oeschger
-    - Nicolas Oeschger
+  - Jessica Oeschger
+  - Nicolas Oeschger
 
 ## Disclaimer
 

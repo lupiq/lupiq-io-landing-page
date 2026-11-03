@@ -1,36 +1,55 @@
 ---
-import { getCollection, render } from 'astro:content';
+import {getCollection, render} from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Logo from '../components/Logo.astro';
 
 export async function getStaticPaths() {
   const pages = await getCollection('legal');
-  return pages.map((page) => ({ params: { slug: page.id }, props: { page } }));
+  return pages.map(page => ({params: {slug: page.id}, props: {page}}));
 }
 
-const { page } = Astro.props;
-const { Content } = await render(page);
+const {page} = Astro.props;
+const {Content} = await render(page);
 ---
 
 <Base title={`${page.data.title} – lupiq`} description={page.data.description}>
   <header class="top">
     <div class="wrap">
-      <a href="/" aria-label="lupiq home"><Logo height={44} /></a>
+      <a href="/" aria-label="lupiq home">
+        <Logo height={44} />
+      </a>
     </div>
   </header>
   <main>
     <article class="wrap prose">
       <h1>{page.data.title}</h1>
       <Content />
-      <p><a href="/">← Back to home</a></p>
+      <p>
+        <a href="/">← Back to home</a>
+      </p>
     </article>
   </main>
 </Base>
 
 <style>
-  .top { padding: 0.75rem 0; }
-  :global(.logo) { display: block; width: auto; }
-  .prose { max-width: 46rem; padding-top: 3rem; padding-bottom: 5rem; }
-  .prose h1 { font-size: clamp(2rem, 5vw, 3rem); text-transform: none; }
-  .prose :global(h2) { font-size: 1.4rem; margin-top: 2rem; }
+  .top {
+    padding: 0.75rem 0;
+  }
+  :global(.logo) {
+    display: block;
+    width: auto;
+  }
+  .prose {
+    max-width: 46rem;
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+  }
+  .prose h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    text-transform: none;
+  }
+  .prose :global(h2) {
+    font-size: 1.4rem;
+    margin-top: 2rem;
+  }
 </style>

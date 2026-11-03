@@ -6,24 +6,28 @@ interface Props {
   description: string;
 }
 
-const { title, description } = Astro.props;
+const {title, description} = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'lupiq GmbH',
-  url: 'https://lupiq.com',
-  logo: new URL('/lupiq_logo_colored.svg', Astro.site).href,
-  email: 'hello@lupiq.com',
-  address: {
+  'name': 'lupiq GmbH',
+  'url': 'https://lupiq.com',
+  'logo': new URL('/lupiq_logo_colored.svg', Astro.site).href,
+  'email': 'hello@lupiq.com',
+  'address': {
     '@type': 'PostalAddress',
-    streetAddress: 'Tägertschistrasse 19',
-    postalCode: '3110',
-    addressLocality: 'Münsingen',
-    addressCountry: 'CH',
+    'streetAddress': 'Tägertschistrasse 19',
+    'postalCode': '3110',
+    'addressLocality': 'Münsingen',
+    'addressCountry': 'CH',
   },
-  sameAs: ['https://lupiq.io', 'https://github.com/lupiq', 'https://relwolf.lupiq.io'],
+  'sameAs': [
+    'https://lupiq.io',
+    'https://github.com/lupiq',
+    'https://relwolf.lupiq.io',
+  ],
 };
 ---
 

@@ -6,6 +6,9 @@ patch-types: [fix, build, refactor, style, perf]
 
 release-emoji: true
 
+# Runs Prettier over the generated changelog before the release commit
+pre-commit-script: scripts/format.sh
+
 assignees:
   - nioe
 

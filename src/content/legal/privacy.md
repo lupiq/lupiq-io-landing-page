@@ -2,6 +2,7 @@
 title: Privacy policy
 description: How lupiq GmbH handles personal data on lupiq.io.
 ---
+
 ## Controller
 
 lupiq GmbH, Tägertschistrasse 19, 3110 Münsingen, Switzerland  
