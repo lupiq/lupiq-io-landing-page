@@ -16,3 +16,5 @@ packages:
   '.':
     updaters:
       - type: package-json
+      - type: generic
+        path: src/app-version.ts

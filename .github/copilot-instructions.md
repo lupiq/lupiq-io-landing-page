@@ -21,7 +21,7 @@ Uses pnpm (Node version in `.node-version`; `save-exact=true`).
 - `public/` has the logos, favicons (`icon.svg`, `favicon.ico`), `CNAME` (`lupiq.io`) and `robots.txt`. The logos are copied from the sibling relwolf repo.
 - lupiq.com is the main company site; lupiq.io is the technical domain for this page. The page links to lupiq.com and the JSON-LD `Organization` URL is lupiq.com.
 - `.github/workflows/release.yml` runs the `lupiq/relwolf` action with a GitHub App token (variable `RELWOLF_APP_CLIENT_ID`, secret `RELWOLF_APP_PRIVATE_KEY`). Config is in `relwolf.yaml` and `cliff.toml`; releases are derived from Conventional Commits, so commit messages must follow them.
-- `.github/workflows/deploy.yml` builds and publishes `dist/` only when relwolf creates a stable release tag (`v*.*.*`) or on manual dispatch. The footer shows `version` from `package.json`, which relwolf bumps in the release PR.
+- `.github/workflows/deploy.yml` builds and publishes `dist/` only when relwolf creates a stable release tag (`v*.*.*`) or on manual dispatch. The footer shows `APP_VERSION` from `src/app-version.ts`; relwolf bumps it (via the `generic` updater and the `x-relwolf-version` marker, which must stay last on its line) together with `package.json` in the release PR.
 
 ## Conventions
 
