@@ -15,7 +15,7 @@ Uses pnpm (Node version in `.node-version`; `save-exact=true`).
 ## Architecture
 
 - `src/content.config.ts` defines three Markdown content collections under `src/content/`: `pillars`, `services` and `work`. Each entry is one `.md` file; the frontmatter `order` field controls display order. `work` entries also need `tagline`, `url` and optionally `cta` and a `secondary` link (`label`, `url`).
-- `src/content/legal/` holds the imprint and privacy policy (Markdown); `src/pages/[slug].astro` renders them at `/imprint/` and `/privacy/`. They contain `[TODO: ...]` placeholders (register, UID, VAT, representatives, hosting provider) that must be filled in before launch.
+- `src/content/legal/` holds the imprint and privacy policy (Markdown); `src/pages/[slug].astro` renders them at `/imprint/` and `/privacy/`. The privacy policy names the hosting provider (GitHub Pages); update it if the hosting changes.
 - `src/pages/index.astro` is the home page. Shared `src/components/Header.astro` (nav, mobile menu script) and `Footer.astro` (legal links, version) are used by all pages; each component keeps its own scoped `<style>`/`<script>`. It loads and renders all collections and lays out the sections (hero, what we do, services, Our Work, contact). Hero and contact copy is written directly in this file, not in Markdown.
 - `src/layouts/Base.astro` holds all SEO: canonical URL, Open Graph, sitemap link and `Organization` JSON-LD. Google indexing of `lupiq.io` is the reason this site exists, so keep these intact.
 - To add a project to "Our Work", add a Markdown file to `src/content/work/` (the first entry is relwolf, linking to https://relwolf.lupiq.io).

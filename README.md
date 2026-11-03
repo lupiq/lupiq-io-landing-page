@@ -32,7 +32,7 @@ Content lives in `src/content/` as Markdown with frontmatter; `order` controls t
 
 Hero and contact texts are part of `src/pages/index.astro`. Brand colors are CSS variables in `src/styles/global.css`.
 
-The imprint and privacy policy contain `[TODO: ...]` placeholders that have to be filled in before launch.
+The privacy policy names the hosting provider; update it if the hosting changes.
 
 ## Releases and deployment
 
