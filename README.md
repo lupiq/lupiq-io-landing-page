@@ -39,4 +39,5 @@ The privacy policy names the hosting provider; update it if the hosting changes.
 - Commits follow [Conventional Commits](https://www.conventionalcommits.org/) with a sentence-case subject; this is enforced by a Husky `commit-msg` hook (commitlint).
 - [relwolf](https://relwolf.lupiq.io) opens a release pull request (`.github/workflows/release.yml`, config in `relwolf.yaml` and `cliff.toml`). It bumps the version in `package.json` and `src/app-version.ts` (shown in the footer). The workflow needs the variable `RELWOLF_APP_CLIENT_ID` and the secret `RELWOLF_APP_PRIVATE_KEY` of a GitHub App.
 - `.github/workflows/deploy.yml` builds every push. Only stable release tags (`v*.*.*`) are published to GitHub Pages; the `github-pages` environment must allow that tag pattern.
+- [Renovate](https://docs.renovatebot.com/) (`renovate.json`) groups all minor and patch updates into one pull request that is merged automatically once the build is green; major updates are grouped separately and need a manual review.
 - Pages source: Settings → Pages → _GitHub Actions_, custom domain `lupiq.io`.
