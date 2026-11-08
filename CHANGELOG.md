@@ -1,3 +1,20 @@
+## [1.0.2](https://github.com/lupiq/lupiq-io-landing-page/compare/v1.0.1...v1.0.2) - 2026-11-08
+
+### 🐛 Bug Fixes
+
+- **deps**: Update non-major dependencies (#3)
+
+### 📚 Documentation
+
+- Update `README.md`
+
+### 👷 CI
+
+- Add Renovate
+- Disable Renovate dashboard approval
+
+---
+
 ## [1.0.1](https://github.com/lupiq/lupiq-io-landing-page/compare/v1.0.0...v1.0.1) - 2026-11-03
 
 ### 📚 Documentation
